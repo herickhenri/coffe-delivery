@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { CoffeesContext } from '../../../contexts/coffees-context'
 import { Coffee } from '../../../types/Coffee'
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
+import { formatNumberOfCurrencyBRL } from '../../../utils/formatNumberOfCurrencyBRL'
 
 interface CoffeeItemProps {
   coffee: Coffee
@@ -56,7 +57,9 @@ export function CoffeeItem({ coffee, amount }: CoffeeItemProps) {
           </button>
         </div>
       </div>
-      <span className="font-bold text-gray-700">R$ {coffee.price}</span>
+      <span className="font-bold text-gray-700">
+        {formatNumberOfCurrencyBRL(coffee.price)}
+      </span>
     </div>
   )
 }

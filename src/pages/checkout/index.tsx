@@ -1,10 +1,11 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { AddressForm } from './components/address-form'
-import { ResumeCoffees } from './components/order-confirmation'
+import { ResumeCoffees } from './components/resume-coffees'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { CoffeesContext } from '../../contexts/coffees-context'
+import { Link } from 'react-router-dom'
 
 const AddressFormSchema = z.object({
   cep: z.string().refine((cepValue) => {
@@ -23,6 +24,8 @@ const AddressFormSchema = z.object({
 export type AddressFormData = z.infer<typeof AddressFormSchema>
 
 export function Checkout() {
+  const { coffeeShoppingList } = useContext(CoffeesContext)
+
   const addressForm = useForm<AddressFormData>({
     resolver: zodResolver(AddressFormSchema),
   })
@@ -49,7 +52,33 @@ export function Checkout() {
           <strong className="font-baloo-2 text-lg font-bold text-gray-800">
             Cafés selecionados
           </strong>
-          <ResumeCoffees />
+          <div className="space-y-6 rounded-bl-[44px] rounded-br-md rounded-tl-md rounded-tr-[44px] bg-gray-200 p-10">
+            {coffeeShoppingList.length <= 0 ? (
+              <div className="flex flex-col gap-4 text-center">
+                <span className="">
+                  Nenhum café selecionado. Escolha um de nossos produtos na
+                  página principal
+                </span>
+                <Link
+                  to={'/'}
+                  className="mx-auto max-w-max rounded-md bg-yellow-500 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-yellow-700"
+                >
+                  Página principal
+                </Link>
+              </div>
+            ) : (
+              <>
+                <ResumeCoffees />
+
+                <button
+                  className="w-full rounded-md bg-yellow-500 px-2 py-3 text-sm font-bold text-white transition-colors hover:bg-yellow-700"
+                  type="submit"
+                >
+                  CONFIRMAR PEDIDO
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </form>
     </FormProvider>
