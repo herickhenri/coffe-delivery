@@ -21,7 +21,7 @@ const AddressFormSchema = z.object({
   stateAbbreviation: z
     .string({ message: 'A sigla do estado é obrigatória' })
     .length(2),
-  payment: z.string(),
+  payment: z.string({ message: 'Informe o tipo de pagamento' }),
 })
 
 export type AddressFormData = z.infer<typeof AddressFormSchema>

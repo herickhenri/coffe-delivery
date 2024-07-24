@@ -50,7 +50,6 @@ export function PaymentMethod() {
                 <RadioGroup.Item
                   key={name}
                   value={name}
-                  data-error={!!errors.payment}
                   className="flex flex-1 items-center gap-3 rounded-md bg-gray-400 p-4 text-left text-xs uppercase text-gray-700 outline-double outline-1 outline-transparent transition-colors hover:bg-gray-500 focus:outline-yellow-500 data-[state=checked]:bg-purple-200 data-[state=checked]:outline-purple-500"
                 >
                   <Icon size={16} className="text-purple-500" />
@@ -61,6 +60,9 @@ export function PaymentMethod() {
           )}
         />
       </div>
+      {errors.payment && (
+        <span className="text-sm text-red-400">* {errors.payment.message}</span>
+      )}
     </div>
   )
 }
