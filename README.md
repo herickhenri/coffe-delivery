@@ -20,7 +20,7 @@ O projeto consiste em site de vendas de cafés por delivery, então o usuário p
 
 # Funcionalidades extras
  - [x] Validação do formulário
- - [x] Conexão com a api ViaCep que busca o endereço do usuário somente pelo cep
+ - [x] Conexão com a API ViaCep que busca o endereço do usuário somente pelo cep
  - [x] Conexão com a API do IGBE para buscar os estados e cidades do brasil
 
 ## Versão mobile
