@@ -9,19 +9,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { PaymentMethod } from './components/payment-method'
 
 const AddressFormSchema = z.object({
-  cep: z.string().refine((cepValue) => {
+  cep: z.string({ message: 'O cep é obrigatório' }).refine((cepValue) => {
     const cepRegex = /^\d{5}-\d{3}$/
     return cepRegex.test(cepValue)
-  }),
+  }, 'Formato Inválido'),
   street: z.string().min(3, 'O nome da rua é obrigatório.'),
   numberOfHouse: z.coerce.number().min(1, 'O numero da casa é obrigatório.'),
   complement: z.string().optional(),
   district: z.string().min(3, 'O nome do bairro é obrigatório.'),
   city: z.string().min(3, 'O nome da cidade é obrigatório.'),
   stateAbbreviation: z
-    .string()
-    .min(2, 'A sigla do estado é obrigatória')
-    .max(2),
+    .string({ message: 'A sigla do estado é obrigatória' })
+    .length(2),
   payment: z.string(),
 })
 

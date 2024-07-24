@@ -4,11 +4,11 @@ import { twMerge } from 'tailwind-merge'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
   labelContent?: string
-  onValidationError?: boolean
+  errorMessage?: string
 }
 
 export default forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, labelContent, onValidationError = false, ...rest },
+  { className, labelContent, errorMessage, ...rest },
   ref,
 ) {
   return (
@@ -19,7 +19,7 @@ export default forwardRef<HTMLInputElement, InputProps>(function Input(
       <input
         id={labelContent}
         ref={ref}
-        data-error={onValidationError}
+        data-error={!!errorMessage}
         {...rest}
         className={twMerge(
           'rounded border border-gray-400 bg-gray-300 p-3 outline-double outline-1 outline-transparent placeholder:text-sm placeholder:text-gray-600 focus:outline-yellow-500 data-[error=true]:outline-red-400',

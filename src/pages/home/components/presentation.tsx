@@ -16,7 +16,7 @@ export function Presentation() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="flex items-center gap-1.5 justify-self-center">
+          <div className="flex items-center gap-1.5 justify-self-center md:justify-self-auto">
             <ShoppingCart
               weight="fill"
               size={32}
@@ -24,7 +24,7 @@ export function Presentation() {
             />
             <span>Compra simples e segura</span>
           </div>
-          <div className="flex items-center gap-1.5 justify-self-center">
+          <div className="flex items-center gap-1.5 justify-self-center md:justify-self-auto">
             <Package
               weight="fill"
               size={32}
@@ -32,7 +32,7 @@ export function Presentation() {
             />
             <span>Entrega rápida e rastreada</span>
           </div>
-          <div className="flex items-center gap-1.5 justify-self-center">
+          <div className="flex items-center gap-1.5 justify-self-center md:justify-self-auto">
             <Timer
               weight="fill"
               size={32}
@@ -40,7 +40,7 @@ export function Presentation() {
             />
             <span>Embalagem mantém o café intacto</span>
           </div>
-          <div className="flex items-center gap-1.5 justify-self-center">
+          <div className="flex items-center gap-1.5 justify-self-center md:justify-self-auto">
             <Coffee
               weight="fill"
               size={32}

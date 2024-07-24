@@ -22,10 +22,10 @@ export function AddressForm() {
     axios(`https://viacep.com.br/ws/${cep}/json/`).then((response) => {
       const { data } = response
 
-      setValue('stateAbbreviation', data.uf)
-      setValue('city', data.localidade)
-      setValue('district', data.bairro)
-      setValue('street', data.logradouro)
+      setValue('stateAbbreviation', data.uf, { shouldValidate: true })
+      setValue('city', data.localidade, { shouldValidate: true })
+      setValue('district', data.bairro, { shouldValidate: true })
+      setValue('street', data.logradouro, { shouldValidate: true })
     })
   }
 
@@ -100,7 +100,7 @@ export function AddressForm() {
               maxLength={9}
               value={field.value}
               onChange={(e) => field.onChange(formatCep(e.target.value))}
-              onValidationError={!!errors.cep}
+              errorMessage={errors.cep?.message}
             />
           )}
         />
@@ -111,17 +111,17 @@ export function AddressForm() {
           labelContent="Rua"
           placeholder="Rua"
           {...register('street')}
-          onValidationError={!!errors.street}
+          errorMessage={errors.street?.message}
         />
 
         <div className="flex flex-wrap gap-4">
           <Input
-            className="flex-1 md:w-52"
+            className="w-full md:w-52"
             type="text"
             labelContent="Numero da casa"
             placeholder="Número"
             {...register('numberOfHouse')}
-            onValidationError={!!errors.numberOfHouse}
+            errorMessage={errors.numberOfHouse?.message}
           />
           <div className="relative flex-1">
             <Input
@@ -130,7 +130,7 @@ export function AddressForm() {
               labelContent="Complemento"
               placeholder="Complemento"
               {...register('complement')}
-              onValidationError={!!errors.complement}
+              errorMessage={errors.complement?.message}
             />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs italic text-gray-600">
               Opcional
@@ -140,12 +140,12 @@ export function AddressForm() {
 
         <div className="flex flex-wrap gap-4 md:flex-nowrap">
           <Input
-            className="w-52 grow"
+            className="w-full md:w-52"
             type="text"
             labelContent="Bairro"
             placeholder="Bairro"
             {...register('district')}
-            onValidationError={!!errors.district}
+            errorMessage={errors.district?.message}
           />
           <Controller
             control={control}
@@ -158,6 +158,7 @@ export function AddressForm() {
                 onChange={field.onChange}
                 selectedItem={field.value}
                 disabled={cities.length === 0}
+                errorMessage={errors.city?.message}
               />
             )}
           />
@@ -170,6 +171,7 @@ export function AddressForm() {
                 list={statesUf}
                 onChange={field.onChange}
                 selectedItem={field.value}
+                errorMessage={errors.stateAbbreviation?.message}
               />
             )}
           />
