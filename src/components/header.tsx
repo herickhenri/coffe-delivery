@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <header
-      className={`${onShadow ? 'shadow-lg' : ''} fixed top-0 flex h-24 w-full items-center justify-between bg-gray-100 px-40`}
+      className={`${onShadow ? 'shadow-lg' : ''} fixed top-0 z-10 flex h-24 w-full items-center justify-between bg-gray-100 px-10 md:px-40`}
     >
       <Link to={'/'}>
         <img src={CoffeeDeliveryLogo} alt="" />

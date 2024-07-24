@@ -20,7 +20,12 @@ export function CoffeeItem({ coffee, amount }: CoffeeItemProps) {
     <div key={coffee.id} className="flex gap-5">
       <img src={coffee.photo} alt="" className="size-16" />
       <div className="flex-1 space-y-2">
-        <span>{coffee.title}</span>
+        <div className="flex justify-between">
+          <span>{coffee.title}</span>
+          <span className="font-bold text-gray-700">
+            {formatNumberOfCurrencyBRL(coffee.price)}
+          </span>
+        </div>
         <div className="flex gap-2">
           <div className="flex items-center gap-1 rounded-md bg-gray-400 p-2 text-gray-900">
             <button
@@ -57,9 +62,6 @@ export function CoffeeItem({ coffee, amount }: CoffeeItemProps) {
           </button>
         </div>
       </div>
-      <span className="font-bold text-gray-700">
-        {formatNumberOfCurrencyBRL(coffee.price)}
-      </span>
     </div>
   )
 }

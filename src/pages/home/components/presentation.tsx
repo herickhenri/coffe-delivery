@@ -3,9 +3,9 @@ import CupOfCoffe from '../../../assets/cup-of-coffee.png'
 
 export function Presentation() {
   return (
-    <div className="flex gap-14 bg-home bg-center bg-no-repeat px-40 py-24 [background-size:auto_100%]">
+    <div className="flex flex-col gap-14 bg-home bg-center bg-no-repeat px-10 py-24 [background-size:auto_100%] md:flex-row md:px-40">
       <div className="space-y-16">
-        <div className="space-y-4">
+        <div className="space-y-4 text-center md:text-left">
           <h1 className="font-baloo-2 text-5xl font-bold text-gray-900">
             Encontre o café perfeito para qualquer hora do dia
           </h1>
@@ -15,8 +15,8 @@ export function Presentation() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex items-center gap-1.5">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex items-center gap-1.5 justify-self-center">
             <ShoppingCart
               weight="fill"
               size={32}
@@ -24,7 +24,7 @@ export function Presentation() {
             />
             <span>Compra simples e segura</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 justify-self-center">
             <Package
               weight="fill"
               size={32}
@@ -32,7 +32,7 @@ export function Presentation() {
             />
             <span>Entrega rápida e rastreada</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 justify-self-center">
             <Timer
               weight="fill"
               size={32}
@@ -40,7 +40,7 @@ export function Presentation() {
             />
             <span>Embalagem mantém o café intacto</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 justify-self-center">
             <Coffee
               weight="fill"
               size={32}
@@ -51,7 +51,7 @@ export function Presentation() {
         </div>
       </div>
       <div>
-        <img src={CupOfCoffe} alt="" className="min-w-[29rem]" />
+        <img src={CupOfCoffe} alt="" className="w-full md:min-w-[29rem]" />
       </div>
     </div>
   )

@@ -6,8 +6,21 @@ type CoffeeShopping = {
   amount: number
 }
 
+type AddressData = {
+  cep: string
+  street: string
+  numberOfHouse: number
+  district: string
+  city: string
+  stateAbbreviation: string
+  payment: string
+  complement?: string | undefined
+}
+
 type CyclesContextType = {
   coffeeShoppingList: CoffeeShopping[]
+  addressData: AddressData
+  changeAddressData: (data: AddressData) => void
   addOneCoffeeInShoppingList: (coffee: Coffee) => void
   removeOneCoffeeInShoppingList: (coffee: Coffee) => void
   removeAllAmountCoffeInShoppingList: (coffee: Coffee) => void
@@ -25,6 +38,11 @@ export function CoffeesContextProvider({
   const [coffeeShoppingList, setCoffeeShoppingList] = useState<
     CoffeeShopping[]
   >([])
+  const [addressData, setAddressData] = useState<AddressData>({} as AddressData)
+
+  function changeAddressData(data: AddressData) {
+    setAddressData(data)
+  }
 
   function addOneCoffeeInShoppingList(coffee: Coffee) {
     setCoffeeShoppingList((state) => {
@@ -76,6 +94,8 @@ export function CoffeesContextProvider({
         addOneCoffeeInShoppingList,
         removeOneCoffeeInShoppingList,
         removeAllAmountCoffeInShoppingList,
+        addressData,
+        changeAddressData,
       }}
     >
       {children}

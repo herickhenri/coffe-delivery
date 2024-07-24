@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { CoffeesContext } from '../../../contexts/coffees-context'
 import { CoffeeItem } from './coffee-item'
 import { formatNumberOfCurrencyBRL } from '../../../utils/formatNumberOfCurrencyBRL'
@@ -23,10 +23,10 @@ export function ResumeCoffees() {
   return (
     <>
       {coffeeShoppingList.map(({ coffee, amount }) => (
-        <>
-          <CoffeeItem key={coffee.id} coffee={coffee} amount={amount} />
+        <React.Fragment key={coffee.id}>
+          <CoffeeItem coffee={coffee} amount={amount} />
           <div className="h-px w-full bg-gray-400" />
-        </>
+        </React.Fragment>
       ))}
 
       <div className="space-y-3">

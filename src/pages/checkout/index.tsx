@@ -5,26 +5,31 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { CoffeesContext } from '../../contexts/coffees-context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { PaymentMethod } from './components/payment-method'
 
 const AddressFormSchema = z.object({
   cep: z.string().refine((cepValue) => {
     const cepRegex = /^\d{5}-\d{3}$/
     return cepRegex.test(cepValue)
   }),
-  street: z.string(),
-  numberOfHouse: z.number(),
+  street: z.string().min(3, 'O nome da rua é obrigatório.'),
+  numberOfHouse: z.coerce.number().min(1, 'O numero da casa é obrigatório.'),
   complement: z.string().optional(),
-  district: z.string(),
-  city: z.string(),
-  stateAbbreviation: z.string().max(2),
+  district: z.string().min(3, 'O nome do bairro é obrigatório.'),
+  city: z.string().min(3, 'O nome da cidade é obrigatório.'),
+  stateAbbreviation: z
+    .string()
+    .min(2, 'A sigla do estado é obrigatória')
+    .max(2),
   payment: z.string(),
 })
 
 export type AddressFormData = z.infer<typeof AddressFormSchema>
 
 export function Checkout() {
-  const { coffeeShoppingList } = useContext(CoffeesContext)
+  const navigate = useNavigate()
+  const { coffeeShoppingList, changeAddressData } = useContext(CoffeesContext)
 
   const addressForm = useForm<AddressFormData>({
     resolver: zodResolver(AddressFormSchema),
@@ -33,26 +38,28 @@ export function Checkout() {
   const { handleSubmit } = addressForm
 
   function handleCreateOrder(data: AddressFormData) {
-    console.log(data)
+    changeAddressData(data)
+    navigate('/checkout-success')
   }
 
   return (
     <FormProvider {...addressForm}>
       <form
-        className="flex gap-8 px-40 py-10"
+        className="flex flex-col gap-8 px-10 py-10 md:flex-row md:px-40"
         onSubmit={handleSubmit(handleCreateOrder)}
       >
-        <div className="flex-1 space-y-4">
+        <div className="w-full flex-1 space-y-4 md:min-w-[40rem]">
           <strong className="font-baloo-2 text-lg font-bold text-gray-800">
             Complete seu pedido
           </strong>
           <AddressForm />
+          <PaymentMethod />
         </div>
-        <div className="min-w-[28rem] space-y-4">
+        <div className="space-y-4 md:min-w-[28rem]">
           <strong className="font-baloo-2 text-lg font-bold text-gray-800">
             Cafés selecionados
           </strong>
-          <div className="space-y-6 rounded-bl-[44px] rounded-br-md rounded-tl-md rounded-tr-[44px] bg-gray-200 p-10">
+          <div className="space-y-6 rounded-bl-[44px] rounded-br-md rounded-tl-md rounded-tr-[44px] bg-gray-200 p-5 md:p-10">
             {coffeeShoppingList.length <= 0 ? (
               <div className="flex flex-col gap-4 text-center">
                 <span className="">
