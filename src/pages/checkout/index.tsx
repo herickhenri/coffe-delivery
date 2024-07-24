@@ -28,10 +28,16 @@ export type AddressFormData = z.infer<typeof AddressFormSchema>
 
 export function Checkout() {
   const navigate = useNavigate()
-  const { coffeeShoppingList, changeAddressData } = useContext(CoffeesContext)
+  const { coffeeShoppingList, changeAddressData, addressData } =
+    useContext(CoffeesContext)
+
+  console.log('executei')
 
   const addressForm = useForm<AddressFormData>({
     resolver: zodResolver(AddressFormSchema),
+    defaultValues: {
+      cep: addressData.cep,
+    },
   })
 
   const { handleSubmit } = addressForm

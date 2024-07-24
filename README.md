@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="public/logo-coffee-delivery.svg">
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Este é um projeto desafio desenvolvido para o curso de fundamentos do react realizado pela Rocketseat
 
-Currently, two official plugins are available:
+### O projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O projeto consiste em site de vendas de cafés por delivery, então o usuário pode adicionar novos itens a sua lista de compras, preencher seus dados e realizar a compra
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Funcionalidades proposta pelo desafio
 
-- Configure the top-level `parserOptions` property like this:
+- [x] Listagem de produtos (cafés) disponíveis para compra
+- [x] Adicionar uma quantidade específicas de itens no carrinho
+- [x] Aumentar ou remover a quantidade de itens no carrinho
+- [x] Formulário para o usuário preencher o seu endereço
+- [x] Exibir o total de itens no carrinho no Header
+- [x] Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Funcionalidades extras
+ - [x] Validação do formulário
+ - [x] Conecção com a api ViaCep que busca o endereço do usuário somente pelo cep
+ - [x] Conecção com a API do IGBE para buscar os estados e cidades do brasil
+
+## Versão mobile
+
+Apesar de não conter no desafio ou no desing do figma, criei a parte mobile do site para que o mesmo se torne totalmente responsivo
+
+## 💻 Pré-requisitos para executar o projeto em seu computador
+
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+
+- Você instalou a versão mais recente do `<nodejs / git>`
+- Você tem uma máquina `<Windows / Linux / Mac>`.
+
+## 🚀 Instalando o Coffee Delivery
+
+Para instalar o Coffee Delivery, siga estas etapas:
+
+Faça o clone no repositório na sua máquina:
+
+```
+git clone https://github.com/herickhenri/todo-list.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Faça a instalação das dependências:
+
+```
+npm install
+```
+
+## ☕ Usando Coffee Delivery
+
+Para usar Coffee Delivery, execute o código:
+
+```
+npm run dev
+```
+
